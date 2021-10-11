@@ -8,6 +8,7 @@ import NavigationIcon from "@material-ui/icons/Navigation";
 import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { MovieSharp } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -65,6 +66,16 @@ const useStyles = makeStyles((theme) => ({
             label={`${movie.vote_average} (${movie.vote_count}`}
           />
           <Chip label={`Released: ${movie.release_date}`} />
+        </Paper>
+        <Paper component = "ul" className = {classes.root}>
+          <li>
+            <Chip label = "Production Countries" className = {classes.chip} color = "primary" />
+          </li>
+          {movie.production_countries.map((c) => (
+            <li key = {c.name}>
+              <Chip label = {c.name} className = {classes.chip} />
+            </li>
+          ))}
         </Paper>
   
         <Fab
