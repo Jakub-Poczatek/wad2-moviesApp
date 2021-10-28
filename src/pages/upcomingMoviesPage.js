@@ -3,9 +3,9 @@ import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
 import {getUpcomingMovies} from '../api/tmdb-api'
-import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
+import AddToWishlistIcon from "../components/cardIcons/addToWishlist";
 
-const HomePage = (props) => {
+const UpcomingMoviesPage = (props) => {
   const {  data, error, isLoading, isError }  = useQuery('upcoming', getUpcomingMovies)
 
   if (isLoading) {
@@ -18,19 +18,19 @@ const HomePage = (props) => {
   const movies = data.results;
 
   // Redundant, but necessary to avoid app crashing.
-  const favorites = movies.filter(m => m.favorite)
-  localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
+  const wishlist = movies.filter(m => m.favorite)
+  localStorage.setItem('wishlist', JSON.stringify(wishlist))
+  const addToWishlist = (movieId) => true 
 
   return (
     <PageTemplate
       title="Upcoming Movies"
       movies={movies}
       action={(movie) => {
-        return <AddToFavoritesIcon movie={movie}/>
+        return <AddToWishlistIcon movie={movie}/>
       }}
     />    
   );
 };
 
-export default HomePage;
+export default UpcomingMoviesPage;
