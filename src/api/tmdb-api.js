@@ -1,10 +1,7 @@
 export const getMovies = () => {
   return fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
-<<<<<<< HEAD
     
-=======
->>>>>>> 2f75ee4ab1eb95c303e068d20f6e46fdf5536e51
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -29,7 +26,6 @@ export const getUpcomingMovies = () => {
      throw error
   });
 };
-<<<<<<< HEAD
 
 export const getPopularTv = () => {
   return fetch(
@@ -44,8 +40,6 @@ export const getPopularTv = () => {
     throw error
   });
 };
-=======
->>>>>>> 2f75ee4ab1eb95c303e068d20f6e46fdf5536e51
   
   export const getMovie = (args) => {
     // console.log(args)
