@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import ShowHeader from "../components/showHeader/";
 import ShowDetails from "../components/showDetails/";
 import Grid from "@material-ui/core/Grid";
@@ -20,8 +20,32 @@ const useStyles = makeStyles((theme) => ({
 
 const ShowPage = (props) => {
   const classes = useStyles();
-  const show = props.show;
-  const images = props.images;
+  const {id} = props.match.params;
+  const [show, setShow] = useState(null);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((show) => {
+        setShow(show);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    )
+      .then((res) => res.json())
+      .then((json) => json.posters)
+      .then((images) => {
+        setImages(images);
+      });
+  }, []);
 
   return (
     <>
@@ -43,8 +67,8 @@ const ShowPage = (props) => {
                       cols={1}
                     >
                       <img
-                        src={`https://image.tmdb.org/t/p/w500/${image}`}
-                        alt={image.poster_path}
+                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                        alt={image.file_path}
                       />
                     </GridListTile>
                   ))}
