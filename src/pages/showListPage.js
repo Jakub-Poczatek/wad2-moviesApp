@@ -32,6 +32,14 @@ const ShowListPage = (props) => {
     else setGenreFilter(value);
   }
 
+  const addToFavorites = (showId) => {
+    const updatedShows = shows.map((m) =>
+    m.id === showId ? {...m, favorite: true} : m
+    );
+    setShows(updatedShows);
+  };
+  
+
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
@@ -58,7 +66,7 @@ const ShowListPage = (props) => {
           genreFilter={genreFilter}
           />
         </Grid>
-        <ShowList shows={displayedShows} />
+        <ShowList shows={displayedShows} selectFavorite={addToFavorites}/>
       </Grid>
     </Grid>
   );

@@ -12,23 +12,44 @@ import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
-import img from '../../images/film-poster-placeholder.png'
+import Avatar from "@material-ui/core/Avatar";
+import img from '../../images/film-poster-placeholder.png';
 import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
-  card: { maxWidth: 345 },
-  media: { height: 500 },
+  card: {maxWidth: 345},
+  media: {height: 500},
   avatar: {
-    backgroundColor: "rgb(255, 0, 0)",
+      backgroundColor: "rgb(255, 0, 0)",
   },
 });
 
 export default function ShowCard(props) {
   const classes = useStyles();
   const show = props.show;
+
+  const handleAddToFavorite = (e) => {
+    e.preventDefault();
+    props.selectFavorite(show.id);
+  };
+
   return (
     <Card className={classes.card}>
-      <CardHeader className={classes.header} title={show.name} />
+      <CardHeader 
+      className={classes.header}
+      avatar={
+        show.favorite ? (
+          <Avatar className = {classes.avatar}>
+            <FavoriteIcon />
+          </Avatar>
+        ) : null
+      } 
+      title={
+        <Typography variant="h5" component="p">
+          {show.name}{""}
+        </Typography>
+      } 
+      />
       <CardMedia
         className={classes.media}
         image={
@@ -54,7 +75,7 @@ export default function ShowCard(props) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={null}>
+        <IconButton aria-label="add to favorites" onClick={handleAddToFavorite}>
           <FavoriteIcon color="primary" fontSize="large" />
         </IconButton>
         <Link to = {`/tv/popular/${show.id}`}>
