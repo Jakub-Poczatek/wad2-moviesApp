@@ -59,7 +59,16 @@ const ShowDetails = ( props) => {
         />
         <Chip label={`Released: ${show.first_air_date}`} />
       </Paper>
-
+      <Paper component="ul" className={classes.root}>
+        <li>
+          <Chip label="Production Countries" className={classes.chip} color="primary" />
+        </li>
+        {show.production_countries.map((g) => (
+          <li key={g.name}>
+            <Chip label={g.name} className={classes.chip} />
+          </li>
+        ))}
+      </Paper>
       <Fab
         color="secondary"
         variant="extended"
