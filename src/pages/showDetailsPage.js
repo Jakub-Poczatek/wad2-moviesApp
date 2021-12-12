@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
+import {getShow, getShowImages} from "../api/tmdb-api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,26 +26,16 @@ const ShowPage = (props) => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((show) => {
-        setShow(show);
-      });
+    getShow(id).then((show) => {
+      setShow(show);
+    });
   }, [id]);
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    )
-      .then((res) => res.json())
-      .then((json) => json.posters)
-      .then((images) => {
-        setImages(images);
-      });
+    getShowImages(id).then((images) => {
+      setImages(images);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
