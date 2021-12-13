@@ -23,7 +23,7 @@ const ShowListPage = (props) => {
 
   return (
     <PageTemplate
-      title='Discover Shows'
+      title='Popular Tv Shows'
       shows={shows}
       selectFavorite={addToFavorites}
     />

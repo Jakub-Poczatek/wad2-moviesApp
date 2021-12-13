@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props ) => {
   const classes = useStyles();
-  const name = props.name
+  const title = props.title
   return (
     <Paper component="div" className={classes.root}>
       <IconButton
@@ -27,7 +27,7 @@ const Header = (props ) => {
       </IconButton>
 
       <Typography variant="h4" component="h3">
-        {name}
+        {title}
       </Typography>
       <IconButton
         aria-label="go forward"

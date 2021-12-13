@@ -48,7 +48,7 @@ const useStyles = makeStyles({
                 <TableCell >
                   <Link
                     to={{
-                      pathname: `/reviews/${r.id}`,
+                      pathname: `/movies/reviews/${r.id}`,
                       state: {
                         review: r,
                         movie: movie,
