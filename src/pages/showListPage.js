@@ -1,32 +1,33 @@
-import React, { useState, useEffect } from "react";
-import PageTemplate from '../components/templateShowListPage'
-import { getShows } from "../api/tmdb-api";
+import React from "react";
+import PageTemplate from "../components/templateShowListPage";
+import { useQuery } from 'react-query'
+import Spinner from '../components/spinner'
+import {getShows} from '../api/tmdb-api'
 
 const ShowListPage = (props) => {
-  const [shows, setShows] = useState([]);
+  const {  data, error, isLoading, isError }  = useQuery('shows', getShows)
+
+  if (isLoading) {
+    return <Spinner />
+  }
+
+  if (isError) {
+    return <h1>{error.message}</h1>
+  }  
+  const shows = data.results;
+
+  // Redundant, but necessary to avoid app crashing.
   const favorites = shows.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
-
-  const addToFavorites = (showId) => {
-    const updatedShows = shows.map((m) =>
-      m.id === showId ? { ...m, favorite: true } : m
-    );
-    setShows(updatedShows);
-  };
-
-  useEffect(() => {
-    getShows().then(shows => {
-      setShows(shows);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const addToFavorites = (showId) => true 
 
   return (
     <PageTemplate
-      title='Popular Tv Shows'
+      title="Popular Tv Shows"
       shows={shows}
       selectFavorite={addToFavorites}
-    />
+    />    
   );
 };
+
 export default ShowListPage;

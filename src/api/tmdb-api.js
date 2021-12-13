@@ -29,10 +29,16 @@ export const getUpcomingMovies = () => {
 
 export const getShows = () => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-  )
-    .then(res => res.json())
-    .then(json => json.results);
+    `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+     throw error
+  });
 };
   
   export const getMovie = (args) => {
@@ -52,10 +58,21 @@ export const getShows = () => {
    });
   };
 
-  export const getShow = id => {
+  export const getShow = (args) => {
+    // console.log(args)
+    const [, idPart] = args.queryKey;
+    const { id } = idPart;
     return fetch(
       `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    ).then(res => res.json());
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+   });
   };
   
   export const getMovieGenres = async () => {
@@ -74,14 +91,20 @@ export const getShows = () => {
    });
   };
 
-  export const getShowGenres = () => {
+  export const getShowGenres = async () => {
     return fetch(
       "https://api.themoviedb.org/3/genre/tv/list?api_key=" +
-        process.env.REACT_APP_TMDB_KEY +
-        "&language=en-US"
-    )
-      .then(res => res.json())
-      .then(json => json.genres);
+      process.env.REACT_APP_TMDB_KEY +
+      "&language=en-US"
+    ).then( (response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+   });
   };
   
   export const getMovieImages = ({ queryKey }) => {
@@ -101,12 +124,21 @@ export const getShows = () => {
    });
   };
 
-  export const getShowImages = (id) => {
+  export const getShowImages = ({ queryKey }) => {
+    const [, idPart] = queryKey;
+    const { id } = idPart;
     return fetch(
       `https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    )
-      .then((res) => res.json())
-      .then((json) => json.posters);
+    ).then( (response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+  
+    })
+    .catch((error) => {
+      throw error
+   });
   };
 
   export const getMovieReviews = (id) => {
