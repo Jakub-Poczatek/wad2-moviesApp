@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -8,6 +8,8 @@ import NavigationIcon from "@material-ui/icons/Navigation";
 import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import ShowReviews from "../showReviews";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ShowDetails = ( props) => {
+const ShowDetails = ( {show} ) => {
   const classes = useStyles();
-  const show = props.show
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
@@ -73,11 +75,15 @@ const ShowDetails = ( props) => {
       <Fab
         color="secondary"
         variant="extended"
+        onClick={() => setDrawerOpen(true)}
         className={classes.fab}
       >
         <NavigationIcon />
         Reviews
       </Fab>
+      <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <ShowReviews show={show} />
+      </Drawer>
       </>
   );
 };
