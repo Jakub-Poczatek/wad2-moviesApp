@@ -11,7 +11,7 @@ Discover Movies
 ================
 View the current popular movies and filter them by genre.
 
-View the details of each movie in the movie list by pressing "More Info...", this takes the user to a new page.
+View the details of each movie in the movie list by pressing the title, this takes the user to a new page.
 
 On the movie page, the user can:
     Access the movies homepage by pressing on the house icon beside the name
@@ -54,6 +54,7 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 + Show review form page
 + Parameterized urls for each route
 + Change useQuery statements in existing files to specify movie relevant information ("images" => "movieImages") and added useQuery to relevant show pages
++ Changed the link for move/show details from a "ShowMore..." button to a hyperlinked title. 
 
 ## Setup requirements.
 
@@ -100,6 +101,10 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 ![ ](./src/images/ShowWriteReview.png)
 
 >Allows the user to fill out required fields to leave a review on the show, the review doesn't get stored.
+
+![ ](./src/images/discoverMovies.png)
+
+>Changed "MoreInfo..." button to a hyperlinked title button
 
 ### Routing.
 

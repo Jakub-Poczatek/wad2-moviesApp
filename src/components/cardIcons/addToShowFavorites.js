@@ -11,7 +11,7 @@ const AddToShowFavoritesIcon = ({ show }) => {
     context.addToShowFavorites(show);
   };
   return (
-    <IconButton aria-label="add to favorites" onClick={handleAddToFavorites}>
+    <IconButton aria-label="add to favorites" onClick={handleAddToFavorites} size="large">
       <FavoriteIcon color="primary" fontSize="large" />
     </IconButton>
   );

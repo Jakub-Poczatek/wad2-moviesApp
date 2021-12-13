@@ -52,9 +52,11 @@ export default function ShowCard({ show, action }) {
         ) : null
       } 
       title={
-        <Typography variant="h5" component="p">
+        <Button style={{textTransform: "none"}} href= {`/tv/popular/${show.id}`}>
+        <Typography variant="h5" component="div">
           {show.name}{""}
         </Typography>
+        </Button>
       } 
       />
       <CardMedia
@@ -67,28 +69,24 @@ export default function ShowCard({ show, action }) {
       />
       <CardContent>
         <Grid container>
+          <Grid item xs = {1}/>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
               {show.first_air_date}
-            </Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
-              {"  "} {show.vote_average}{" "}
+              {"  "}{show.vote_average}{" "}
             </Typography>
           </Grid>
+          <Grid item xs={1}/>
+          <Grid item xs={4}>
+            <CardActions disableSpacing>
+              {action(show)}
+            </CardActions>
+          </Grid>
+          <Grid item xs={1}/>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing>
-        {action(show)}
-        <Link to = {`/tv/popular/${show.id}`}>
-        <Button variant="outlined" size="medium" color="primary">
-          More Info ...
-        </Button>
-        </Link>
-      </CardActions>
     </Card>
   );
 }
