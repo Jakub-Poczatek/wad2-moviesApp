@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
 import ShowDetails from "../components/showDetails";
 import PageTemplate from "../components/templateShowPage";
-import { getShow } from "../api/tmdb-api";
+import useShow from "../hooks/useShow";
 
 const ShowDetailsPage = (props) => {
   const { id } = props.match.params;
-  const [show, setShow] = useState(null);
-
-  useEffect(() => {
-    getShow(id).then((show) => {
-      setShow(show);
-    });
-  }, [id]);
+  const [show] = useShow(id);
 
   return (
     <>
