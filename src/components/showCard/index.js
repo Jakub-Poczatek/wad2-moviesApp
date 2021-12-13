@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -15,6 +15,7 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import img from '../../images/film-poster-placeholder.png';
 import {Link} from "react-router-dom";
+import { MoviesContext } from "../../contexts/moviesContext";
 
 const useStyles = makeStyles({
   card: {maxWidth: 345},
@@ -24,13 +25,19 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ShowCard(props) {
+export default function ShowCard({ show }) {
   const classes = useStyles();
-  const show = props.show;
+  const { showFavorites, addToShowFavorites } = useContext(MoviesContext);
+
+  if (showFavorites.find((id) => id === show.id)) {
+    show.favorite = true;
+  } else {
+    show.favorite = false
+  }
 
   const handleAddToFavorite = (e) => {
     e.preventDefault();
-    props.selectFavorite(show.id);
+    addToShowFavorites(show);
   };
 
   return (

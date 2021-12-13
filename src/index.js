@@ -40,7 +40,7 @@ const App = () => {
         <Route exact path = "/tv/favorites" component = {FavoriteShowsPage} />
         <Route exact path = "/reviews/form" component = {addMovieReviewPage} />
         <Route exact path="/movies/upcoming" component={UpcomingMoviesPage} />
-        <Route path="/movies/reviews/:id" component={MovieReviewPage}/>
+        <Route path="/reviews/:id" component={MovieReviewPage}/>
         <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
         <Route path="/movies/:id" component={MoviePage} />
         <Route exact path="/" component={HomePage} />
