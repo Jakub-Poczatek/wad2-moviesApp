@@ -15,6 +15,7 @@ import ShowListPage from "./pages/showListPage";
 import ShowDetailsPage from "./pages/showDetailsPage";
 import FavoriteShowsPage from "./pages/favoriteShowsPage";
 import ShowReviewPage from "./pages/showReviewPage";
+import AddShowReviewPage from "./pages/addShowReviewPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +35,7 @@ const App = () => {
     <MoviesContextProvider>
       {""}
       <Switch>
+        <Route exact path = "/tv/reviews/form" component={AddShowReviewPage} />
         <Route exact path = "/tv/reviews/:id" component={ShowReviewPage} />
         <Route exact path = "/tv/popular" component={ShowListPage} />
         <Route exact path = "/tv/popular/:id" component = {ShowDetailsPage} />
