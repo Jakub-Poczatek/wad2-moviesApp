@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-function ShowListPageTemplate({ shows, title, selectFavorite }) {
+function ShowListPageTemplate({ shows, title, action }) {
   const classes = useStyles();
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
@@ -43,7 +43,7 @@ function ShowListPageTemplate({ shows, title, selectFavorite }) {
             genreFilter={genreFilter}
           />
         </Grid>
-        <ShowList selectFavorite={selectFavorite} shows={displayedShows}></ShowList>
+        <ShowList action={action} shows={displayedShows}></ShowList>
       </Grid>
     </Grid>
   );

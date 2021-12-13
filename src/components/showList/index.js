@@ -1,11 +1,11 @@
 import React from "react";
-import Show from "../showCard/";
+import Show from "../showCard";
 import Grid from "@material-ui/core/Grid";
 
-const ShowList = (props) => {
-  let showCards = props.shows.map((m) => (
+const ShowList = ( {shows, action }) => {
+  let showCards = shows.map((m) => (
     <Grid key={m.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
-      <Show key={m.id} show={m} selectFavorite={props.selectFavorite} />
+      <Show key={m.id} show={m} action={action} />
     </Grid>
   ));
   return showCards;

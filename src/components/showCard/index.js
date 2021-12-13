@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ShowCard({ show }) {
+export default function ShowCard({ show, action }) {
   const classes = useStyles();
   const { showFavorites, addToShowFavorites } = useContext(MoviesContext);
 
@@ -82,9 +82,7 @@ export default function ShowCard({ show }) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={handleAddToFavorite}>
-          <FavoriteIcon color="primary" fontSize="large" />
-        </IconButton>
+        {action(show)}
         <Link to = {`/tv/popular/${show.id}`}>
         <Button variant="outlined" size="medium" color="primary">
           More Info ...

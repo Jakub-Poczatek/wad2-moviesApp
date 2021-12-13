@@ -4,6 +4,8 @@ import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
 import { getShow } from "../api/tmdb-api";
 import Spinner from '../components/spinner'
+import RemoveFromShowFavorites from "../components/cardIcons/removeFromShowFavorites";
+import WriteShowReviewIcon from "../components/cardIcons/writeShowReview";
 
 const FavoriteMoviesPage = () => {
   const {showFavorites: showIds } = useContext(MoviesContext);
@@ -35,7 +37,14 @@ const FavoriteMoviesPage = () => {
     <PageTemplate
       title="Favourite Shows"
       shows={shows}
-      selectFavorite={toDo}
+      action={(show) => {
+        return (
+          <>
+          <RemoveFromShowFavorites show={show} />
+          <WriteShowReviewIcon show={show} />
+          </>
+        )
+      }}
     />
   );
 };
