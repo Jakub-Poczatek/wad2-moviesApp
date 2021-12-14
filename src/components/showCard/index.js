@@ -73,7 +73,7 @@ export default function ShowCard({ show, action }) {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {show.first_air_date}
+              {show.first_air_date}{"\n"}
               <StarRateIcon fontSize="small" />
               {"  "}{show.vote_average}{" "}
             </Typography>

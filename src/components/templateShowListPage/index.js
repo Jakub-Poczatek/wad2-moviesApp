@@ -15,7 +15,9 @@ function ShowListPageTemplate({ shows, title, action }) {
   const classes = useStyles();
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
+  const [originCountryFilter, setOriginCountryFilter] = useState("Null");
   const genreId = Number(genreFilter);
+  const originCountryId = String(originCountryFilter);
 
   let displayedShows = shows
     .filter((m) => {
@@ -23,11 +25,16 @@ function ShowListPageTemplate({ shows, title, action }) {
     })
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    })
+    .filter((m) => {
+      if(originCountryId !== "Null") return m.origin_country.includes(originCountryId)
+      else return m
     });
 
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
-    else setGenreFilter(value);
+    else if(type === "genre") setGenreFilter(value);
+    else setOriginCountryFilter(value);
   };
 
   return (
@@ -41,6 +48,7 @@ function ShowListPageTemplate({ shows, title, action }) {
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
+            originCountryFilter={originCountryFilter}
           />
         </Grid>
         <ShowList action={action} shows={displayedShows}></ShowList>

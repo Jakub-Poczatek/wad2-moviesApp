@@ -11,7 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
-import { getShowGenres } from "../../api/tmdb-api";
+import { getShowGenres, getCountries } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../spinner";
 
@@ -31,19 +31,50 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FilterShowsCard(props) {
   const classes = useStyles();
-  const { data, error, isLoading, isError } = useQuery("showGenres", getShowGenres);
+  //const { data, error, isLoading, isError } = useQuery("showGenres", getShowGenres);
+  const {data: genreData, error: genreError, isLoading: genreIsLoading, isError: genreIsError} = useQuery("showGenres", getShowGenres)
+  const {data: countryData, error: countryError, isLoading: countryIsLoading, isError: countryIsError} = useQuery("countries", getCountries)
 
-  if (isLoading) {
+  if (genreIsLoading) {
     return <Spinner />;
   }
 
-  if (isError) {
-    return <h1>{error.message}</h1>;
+  if (genreIsError) {
+    return <h1>{genreError.message}</h1>;
   }
-  const genres = data.genres;
+  const genres = genreData.genres;
   if (genres[0].name !== "All"){
     genres.unshift({ id: "0", name: "All" });
   }
+
+  if(countryIsLoading){
+    return <Spinner />;
+  }
+
+  if (countryIsError) {
+    return <h1>{countryError.message}</h1>;
+  }
+
+  const countries = countryData;  
+  if(countries[4].iso_3166_1 !== " "){
+    countries.unshift({iso_3166_1: " ", english_name: " "});
+  }
+  if(countries[3].iso_3166_1 !== "IE"){
+    countries.unshift({iso_3166_1: "IE", english_name: "Ireland"});
+  }
+  if(countries[2].iso_3166_1 !== "UK"){
+    countries.unshift({iso_3166_1: "UK", english_name: "United Kingdom"});
+  }
+  if(countries[1].iso_3166_1 !== "US"){
+    countries.unshift({iso_3166_1: "US", english_name: "United Statest of America"});
+  }
+  if(countries[0].iso_3166_1 !== "Null"){
+    countries.unshift({iso_3166_1: "Null", english_name: "All"});
+  }
+  
+  
+ 
+  
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -56,6 +87,10 @@ export default function FilterShowsCard(props) {
 
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
+  };
+
+  const handleCountryChange = (e) => {
+    handleChange(e, "country", e.target.value);
   };
 
   return (
@@ -86,6 +121,23 @@ export default function FilterShowsCard(props) {
               return (
                 <MenuItem key={genre.id} value={genre.id}>
                   {genre.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="country-label">Countries</InputLabel>
+          <Select
+            labelId="country-label"
+            id="country-select"
+            value={props.originCountryFilter}
+            onChange={handleCountryChange}
+          >
+            {countries.map((country) => {
+              return (
+                <MenuItem key={country.iso_3166_1} value={country.iso_3166_1}>
+                  {country.english_name}
                 </MenuItem>
               );
             })}
