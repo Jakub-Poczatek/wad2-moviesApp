@@ -15,7 +15,9 @@ const useStyles = makeStyles({
     const classes = useStyles();
     const [nameFilter, setNameFilter] = useState("");
     const [genreFilter, setGenreFilter] = useState("0");
+    const [originLanguageFilter, setOriginLanguageFilter] = useState("Null");
     const genreId = Number(genreFilter);
+    const originLanguageId = String(originLanguageFilter);
   
     let displayedMovies = movies
       .filter((m) => {
@@ -23,11 +25,16 @@ const useStyles = makeStyles({
       })
       .filter((m) => {
         return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+      })
+      .filter((m) => {
+        if(originLanguageId !== "Null") return m.original_language.includes(originLanguageId)
+        else return m
       });
   
     const handleChange = (type, value) => {
       if (type === "name") setNameFilter(value);
-      else setGenreFilter(value);
+      else if(type === "genre") setGenreFilter(value);
+      else setOriginLanguageFilter(value);
     };
   
     return (
@@ -41,6 +48,7 @@ const useStyles = makeStyles({
               onUserInput={handleChange}
               titleFilter={nameFilter}
               genreFilter={genreFilter}
+              originLanguageFilter={originLanguageFilter}
             />
           </Grid>
           <MovieList action={action} movies={displayedMovies}></MovieList>

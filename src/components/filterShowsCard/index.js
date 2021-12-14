@@ -72,10 +72,6 @@ export default function FilterShowsCard(props) {
     countries.unshift({iso_3166_1: "Null", english_name: "All"});
   }
   
-  
- 
-  
-
   const handleChange = (e, type, value) => {
     e.preventDefault();
     props.onUserInput(type, value); // NEW
