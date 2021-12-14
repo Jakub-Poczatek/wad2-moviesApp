@@ -52,11 +52,16 @@ export default function MovieCard({ movie, action }) {
           ) : null
         }
         title = {
-          <Button style={{textTransform: "none"}} href= {`/movies/${movie.id}`}>
-            <Typography variant = "h5" component = "p">
-              {movie.title}{" "}
+          <Link
+            to={{
+              pathname: `/movies/${movie.id}`,
+            }}
+            style={{textDecoration: "none", color: "black"}}
+          >
+            <Typography variant="h5">
+              {movie.title}{""}
             </Typography>
-          </Button>
+          </Link>
         }
         />
         <CardMedia

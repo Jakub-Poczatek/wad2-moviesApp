@@ -52,11 +52,16 @@ export default function ShowCard({ show, action }) {
         ) : null
       } 
       title={
-        <Button style={{textTransform: "none"}} href= {`/tv/popular/${show.id}`}>
-        <Typography variant="h5" component="div">
+        <Link
+          to={{
+            pathname: `/tv/popular/${show.id}`,
+          }}
+          style={{textDecoration: "none", color: "black"}}
+        >
+          <Typography variant="h5">
           {show.name}{""}
         </Typography>
-        </Button>
+      </Link>
       } 
       />
       <CardMedia
