@@ -79,6 +79,8 @@ export default function MovieCard({ movie, action }) {
               <Typography variant="h6" component="p">
                 <CalendarIcon fontSize="small" />
                 {movie.release_date}
+              </Typography>
+              <Typography variant="h6" component="p">
                 <StarRateIcon fontSize="small" />
                 {"  "} {movie.vote_average}{" "}
               </Typography>

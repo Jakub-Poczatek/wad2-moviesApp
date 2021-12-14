@@ -9,7 +9,7 @@ The movie app allows the user to do the following things:
 
 Discover Movies
 ================
-View the current popular movies and filter them by genre.
+View the current popular movies, filter the movies by name, genre & original language of the movie and sort the movies by ascending and descending orders of popularity, alphabetical & average rating. 
 
 View the details of each movie in the movie list by pressing the title, this takes the user to a new page.
 
@@ -37,7 +37,7 @@ The only feature difference being the substitute of the add to favorites ability
 Popular Tv Shows
 =================
 The Popular Tv Shows page shares all of its funtionality with the discover movies page, it allows the user to:
-    View the current popular tv shows and filter them by genre 
+    View the current popular tv shows and filter them by name, genre & country of origin. The user can also sort the shows by ascending and descending orders of popularity, alphabetical and average rating.
     View the details of each show 
         Access the homepage of each show
         view a list of reviews as well as a full review 
@@ -48,13 +48,15 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 
 + Popular Tv Shows page (using new endpoint)
 + Show Details page (using 2 new endpoint (show details & show images))
-+ Filter the shows by show genres (using new endpoint)
++ Filter the shows by show genres (using new endpoint). Filter the shows by name and country of origin.
++ Sort the shows by popularity, alphabetical and average ratings. 
 + Show favorites page
 + Show reviews and full review page (using new endpoint)
 + Show review form page
 + Parameterized urls for each route
 + Change useQuery statements in existing files to specify movie relevant information ("images" => "movieImages") and added useQuery to relevant show pages
 + Changed the link for move/show details from a "ShowMore..." button to a hyperlinked title. 
++ Changed the movie filter card to allow extra filtering based on original language and sorting based on popularity, alphabetical & average ratings. 
 
 ## Setup requirements.
 
@@ -67,6 +69,8 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 + Show images - tv/:id/images
 + Show reviews - tv/:id/reviews
 + Show genres - genre/tv/list
++ List of Languages - configuration/languages
++ List of Countries - configuration/countries 
 
 ## App Design.
 
@@ -84,7 +88,11 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 
 ![ ](./src/images/filterShowsCard.png)
 
->Uses specific show genres to filter shows
+>Uses specific name, genres & country to filter shows. Allows for sorting based on popularity, alphabetical & average rating.
+
+![ ](./src/images/filterMoviesCard.png)
+
+>Uses specific name, genres & language to filter movies. Allows for sorting based on popularity, alphabetical & average rating.
 
 ![ ](./src/images/showDetails.png)
 
