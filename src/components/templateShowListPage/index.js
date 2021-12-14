@@ -16,8 +16,53 @@ function ShowListPageTemplate({ shows, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [originCountryFilter, setOriginCountryFilter] = useState("Null");
+  const [sort, setSort] = useState("PopDesc");
   const genreId = Number(genreFilter);
   const originCountryId = String(originCountryFilter);
+  const sortId = String(sort);
+
+  let sortingType = "";
+
+  let conditionalOperator = "<";
+  var operationFunctions = {
+    ">" : function(a, b) {return a > b},
+    "<" : function(a, b) {return a < b}
+  };
+
+  if(sortId === "PopDesc") {
+    sortingType = "popularity";
+    conditionalOperator = "<";
+  } else if(sortId === "PopAsc") {
+    sortingType = "popularity";
+    conditionalOperator = ">";
+  } else if(sortId === "AbcDesc") {
+    sortingType = "name";
+    conditionalOperator = "<";
+  } else if(sortId === "AbcAsc") {
+    sortingType = "name";
+    conditionalOperator = ">";
+  } else if(sortId === "AvgRateDesc") {
+     sortingType = "vote_average";
+     conditionalOperator = "<";
+  } else if(sortId === "AvgRateAsc"){
+    sortingType = "vote_average";
+    conditionalOperator = ">";
+  }
+
+  // Sort Shows Here
+  for(let i = 0; i < shows.length; i++) {
+    let min = i;
+    for(let j = i + 1; j < shows.length; j++) {
+      if(operationFunctions[conditionalOperator](shows[min][sortingType], shows[j][sortingType])) {
+        min = j;
+      }
+    }
+    if(min !== i) {
+      let tmp = shows[i];
+      shows[i] = shows[min];
+      shows[min] = tmp;
+    }
+  }
 
   let displayedShows = shows
     .filter((m) => {
@@ -34,7 +79,8 @@ function ShowListPageTemplate({ shows, title, action }) {
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
     else if(type === "genre") setGenreFilter(value);
-    else setOriginCountryFilter(value);
+    else if (type === "country") setOriginCountryFilter(value);
+    else setSort(value);
   };
 
   return (
@@ -49,6 +95,7 @@ function ShowListPageTemplate({ shows, title, action }) {
             titleFilter={nameFilter}
             genreFilter={genreFilter}
             originCountryFilter={originCountryFilter}
+            sort ={sort}
           />
         </Grid>
         <ShowList action={action} shows={displayedShows}></ShowList>

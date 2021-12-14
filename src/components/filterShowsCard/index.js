@@ -71,6 +71,15 @@ export default function FilterShowsCard(props) {
   if(countries[0].iso_3166_1 !== "Null"){
     countries.unshift({iso_3166_1: "Null", english_name: "All"});
   }
+
+  const sorts = [
+    {id: "PopDesc", title: "Popularity (Descending)"},
+    {id: "PopAsc", title: "Popularity (Ascending)"},
+    {id: "AbcDesc", title: "Alphabetical (Descending)"},
+    {id: "AbcAsc", title: "Alphabetical (Ascending)"},
+    {id: "AvgRateDesc", title: "Average Rating (Descending)"},
+    {id: "AvgRateAsc", title: "Average Rating (Ascending)"},
+  ]
   
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -88,6 +97,10 @@ export default function FilterShowsCard(props) {
   const handleCountryChange = (e) => {
     handleChange(e, "country", e.target.value);
   };
+
+  const handleSortChange = (e) =>{
+    handleChange(e, "sort", e.target.value);
+  }
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -134,6 +147,23 @@ export default function FilterShowsCard(props) {
               return (
                 <MenuItem key={country.iso_3166_1} value={country.iso_3166_1}>
                   {country.english_name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="sort-label">Sort By:</InputLabel>
+          <Select
+            labelId="sort-label"
+            id="sort-select"
+            value={props.sort}
+            onChange={handleSortChange}
+          >
+            {sorts.map((sort) => {
+              return (
+                <MenuItem key={sort.id} value={sort.id}>
+                  {sort.title}
                 </MenuItem>
               );
             })}

@@ -72,6 +72,15 @@ export default function FilterMoviesCard(props) {
     languages.unshift({iso_639_1: "Null", english_name: "All"});
   }
 
+  const sorts = [
+    {id: "PopDesc", title: "Popularity (Descending)"},
+    {id: "PopAsc", title: "Popularity (Ascending)"},
+    {id: "AbcDesc", title: "Alphabetical (Descending)"},
+    {id: "AbcAsc", title: "Alphabetical (Ascending)"},
+    {id: "AvgRateDesc", title: "Average Rating (Descending)"},
+    {id: "AvgRateAsc", title: "Average Rating (Ascending)"},
+  ]
+
   const handleChange = (e, type, value) => {
     e.preventDefault();
     props.onUserInput(type, value); // NEW
@@ -87,6 +96,10 @@ export default function FilterMoviesCard(props) {
 
   const handleLanguageChange = (e) => {
     handleChange(e, "language", e.target.value);
+  }
+
+  const handleSortChange = (e) =>{
+    handleChange(e, "sort", e.target.value);
   }
 
       return(
@@ -139,6 +152,23 @@ export default function FilterMoviesCard(props) {
               })}
             </Select>
           </FormControl>
+          <FormControl className={classes.formControl}>
+          <InputLabel id="sort-label">Sort By:</InputLabel>
+          <Select
+            labelId="sort-label"
+            id="sort-select"
+            value={props.sort}
+            onChange={handleSortChange}
+          >
+            {sorts.map((sort) => {
+              return (
+                <MenuItem key={sort.id} value={sort.id}>
+                  {sort.title}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
         </CardContent>
         <CardMedia
           className={classes.media}
