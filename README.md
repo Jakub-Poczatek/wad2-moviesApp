@@ -31,8 +31,12 @@ the review will not be stored.
 
 Upcoming Movies
 ================
-The upcoming movies page allows the user to do the same funtionality (relative to upcoming movies) as the discover movies page. 
-The only feature difference being the substitute of the add to favorites ability for an add to wishlist button, this button doesn't perform any actions. 
+The Upcoming movies page shares all of its functionality with the discover movies, it allows the user to:
+    View the upcoming movies and filter them by name, genre & country of origin. The user can also sort the movies by ascending and descending orders of popularity, alphabetical and average rating.
+    View the details of each show
+        Same functionality as movie page.
+    Add to a wishlist of upcoming movies
+        Same behaviour as movie favorite page, except for the lack of a leave review button as it wouldn't make sense to leave a review on a movie that's unreleased. 
 
 Popular Tv Shows
 =================
@@ -53,6 +57,8 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 + Show favorites page
 + Show reviews and full review page (using new endpoint)
 + Show review form page
++ Upcoming Movies page (using new endpoint)
++ Wishlist to show *favorited* upcoming movies 
 + Parameterized urls for each route
 + Change useQuery statements in existing files to specify movie relevant information ("images" => "movieImages") and added useQuery to relevant show pages
 + Changed the link for move/show details from a "ShowMore..." button to a hyperlinked title. 

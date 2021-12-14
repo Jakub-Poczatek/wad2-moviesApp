@@ -5,7 +5,6 @@ import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner'
 import RemoveFromWishlist from "../components/cardIcons/removeFromWishlist";
-import WriteReview from "../components/cardIcons/writeReview";
 
 const WishlistPage = () => {
   const {wishlist: movieIds } = useContext(MoviesContext);
