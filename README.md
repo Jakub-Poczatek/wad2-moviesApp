@@ -67,7 +67,17 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 
 ## Setup requirements.
 
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
+React App
+==========
+1. Unzip the file into a folder.
+2. Open the "wad2-moviesApp-master" folder with your chosen file editor.
+3. Open a new terminal and inside the "wad2-moviesApp-master" run the command -> 'npm install'.
+4. Start the react app by running the command -> 'npm start'. This will open a new tab in your default browser.
+5. Enjoy!.
+
+Storybook Components
+=====================
+After following the steps above up to and including step 4. Run the command 'npm run storybook'. This will open a new tab in your default browser where you can view components. 
 
 ## API endpoints.
 
