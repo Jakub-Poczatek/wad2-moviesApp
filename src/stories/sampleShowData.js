@@ -1,0 +1,43 @@
+export default{
+backdrop_path:"/1R68vl3d5s86JsS2NPjl8UoMqIS.jpg",
+created_by:[{id:1757552,credit_id:"602c5041cedac4003f4ff8ec", name:"Jonathan Igla",gender:2, profile_path:"/qZEOruWxWZZMGXPnQcSDC38w1R2.jpg"}],
+episode_run_time:[50],
+first_air_date:"2021-11-24",
+genres:[{"id":10759, name:"Action & Adventure"}, {id:18, name:"Drama"}],
+homepage:"https://www.disneyplus.com/series/hawkeye/11Zy8m9Dkj5l",
+id:88329,
+in_production:true,
+languages:["en"],
+last_air_date:"2021-12-08",
+last_episode_to_air:{air_date:"2021-12-08", episode_number:4, id:3301367,name:"Partners, Am I Right?",
+overview:"Secrets are revealed and hard truths emerge, culminating in a battle against two opposing forces.",
+production_code:"",
+season_number:1,
+still_path:"/3K3CPASP9NhbxPwkSvCskRpmzTL.jpg",
+vote_average:7.182,
+vote_count:11},
+name:"Hawkeye",
+next_episode_to_air:{air_date:"2021-12-15", episode_number:5, id:3301368, name:"", overview:"", production_code:"", season_number:1, still_path:null, vote_average:0.0, vote_count:0}, 
+networks:[{name:"Disney+", id:2739, logo_path:"/gJ8VX6JSu3ciXHuC2dDGAo2lvwM.png", origin_country:"US"}], 
+number_of_episodes:6,
+number_of_seasons:1,
+origin_country:["US"],
+original_language:"en",
+original_name:"Hawkeye",
+overview:"Former Avenger Clint Barton has a seemingly simple mission: get back to his family for Christmas. Possible? Maybe with the help of Kate Bishop, a 22-year-old archer with dreams of becoming a superhero. The two are forced to work together when a presence from Barton’s past threatens to derail far more than the festive spirit.",
+popularity:4413.324,
+poster_path:"/pqzjCxPVc9TkVgGRWeAoMmyqkZV.jpg",
+production_companies:[{"id":420, logo_path:"/hUzeosd33nzE5MCNsZxCGEKTXaQ.png", name:"Marvel Studios", origin_country:"US"}],
+production_countries:[{"iso_3166_1":"US", name:"United States of America"}],
+seasons:[{air_date:"2021-11-24", episode_count:6, id:122165, name:"Season 1", overview:"", poster_path:"/rp378be6RvDNGuPWn4eNCCCxXbE.jpg", season_number:1}],
+spoken_languages:[{"english_name":"English", iso_639_1:"en", name:"English"}],
+status:"Returning Series",
+tagline:"This holiday season, the best gifts come with a bow.",
+type:"Miniseries",
+vote_average:8.5,
+vote_count:763};
+
+/*
+Show URL:
+https://api.themoviedb.org/3/tv/88329?api_key=5900c0a7d73b4155e23ec2bbca2ec6f8&language=en-US
+*/
