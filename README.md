@@ -23,7 +23,7 @@ this displays a red icon beside to name to show that the movie has been added.
 On the favorites page, the user can:
     Filter the favorite movies
     Remove the movies from favorites by pressing the trash can icon
-    Leave a review by pressing the message icon, this will take the user to a new page
+    Leave a review by pressing the message icon, this will take the user to a new page, this page is protected by an authentication feature. 
     Access the movie details page
 
 On the review form page, the user can fill out fields as requested, once submitted the user will be notified of the review submission, 
@@ -63,6 +63,7 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 + Change useQuery statements in existing files to specify movie relevant information ("images" => "movieImages") and added useQuery to relevant show pages
 + Changed the link for move/show details from a "ShowMore..." button to a hyperlinked title. 
 + Changed the movie filter card to allow extra filtering based on original language and sorting based on popularity, alphabetical & average ratings. 
++ Added an authentication layer to movie and show review forms.
 
 ## Setup requirements.
 
@@ -120,6 +121,9 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 
 >Changed "MoreInfo..." button to a hyperlinked title button
 
+![ ](./src/images/loginPage.png)
+>User needs to enter an existing user to access the review page, if incorrect username and password are entered, nothing will happen. 
+
 ### Routing.
 
 [ List the __new routes__ supported by your app and state the associated page.]
@@ -128,7 +132,9 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 + /tv/popular/:id - displays the details on a show
 + /tv/popular - displays list of shows
 + /tv/reviews/:id  - displays a full page version of a show review 
-+ /tv/reviews/form - displays a full page web form to leave a review on a show
++ /tv/reviews/form - displays a full page web form to leave a review on a show (private route)
++ /reviews/form - displays a full page web form to leave a review on a movie (private route)
++ /login - login page for authentication
 
 [If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 
