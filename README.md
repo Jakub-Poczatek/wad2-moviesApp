@@ -83,9 +83,7 @@ The Popular Tv Shows page shares all of its funtionality with the discover movie
 
 ### Component catalogue.
 
-[ Insert a screenshot from the Storybook UI that lists all the stories for the app's components, and highlight those relating to your __new/modified components__ - see the example screenshot below.] .......
-
-![](./images/storybook.png)
+![ ](./src/images/storybook.png)
 
 ### UI Design.
 
